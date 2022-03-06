@@ -1,0 +1,85 @@
+{
+  
+    "confirmation_not_found": "Confirmation reference not found.",
+    "confirmation_link_expired": "The link has expired.",
+    "confirmation_already_confirmed": "Registration has already been confirmed.",
+    "confirmation_resend_fail": "Internal server error. Failed to resend confirmation email.",
+    "confirmation_resend_successful": "E-mail confirmation successfully re-sent.",
+  
+    "item_name_exists": "An item with name '{}' already exists.",
+    "item_error_inserting": "An error occurred while inserting the item.",
+    "item_added": "New {} added successfully. ",
+    "item_edited": "{} edited successfully. ",
+    "item_not_found": "{} not found.",
+    "item_deleted": "Item deleted.",
+  
+    "store_name_exists": "A store with name '{}' already exists.",
+    "store_error_inserting": "An error occurred while inserting the store.",
+    "store_not_found": "Store not found.",
+    "store_deleted": "Store deleted.",
+    "store_item_delete": "{} Deleted From Store",
+  
+    "user_username_exists": "A user with that username already exists.",
+    "user_email_exists": "A user with that email already exists.",
+    "user_email_username_exists": "A user with that email or username already exists.",
+    "user_not_found": "User not found.",
+    "user_deleted": "User deleted.",
+    "user_invalid_credentials": "Invalid credentials!",
+    "user_logged_out": "User successfully logged out.",
+    "user_logged_in": "User <{username}> successfully logged in.",
+    "user_already_logged_in": "User <{username}> already logged in.",
+    "user_not_logged_in":"You Are Not Authorized",
+    "user_not_confirmed": "You have not confirmed registration, please check your email <{}>.",
+    "user_error_creating": "Internal server error. Failed to create user.",
+    "user_registered": "Account created successfully.",
+    "user_name_needed":"Username Required",
+    "user_left_successfully": "You left community {} successfully",
+  
+    "credit_amount_needed": "Change credit needs specified amount",
+    "credit_not_enough": "Your Credit Is Not Enough",
+    "credit_changed": "Your credit changed successfully",
+  
+  
+    "wrong_username_pass": "Wrong username or password.",
+    "wrong_pass": "Wrong password entered.",
+    "wrong_email_format": "Wrong email format entered.",
+    "wrong_username_format": "Username must only contain characters and digits.",
+  
+  
+  
+  
+    "transaction_null_user": "Transaction Type Needs Second User",
+    
+    "upload_success":"Upload Was Successfull",
+    "upload_no_file":"No File Founded In Request",
+    "upload_no_filename":"No Filename Founded In Request",
+    "UPLOAD_FOLDER":"/static/uploads/",
+    
+    "permission_denied":"You Dont Have Permission To Do That",
+  
+    "token_missing":"Token Is Missing",
+    "token_expired":"Token Has Expired",
+  
+    "link_user": "/users/{}/profile",
+  
+  
+  
+    "url_login": "/login",
+    "url_refresh_login": "/login/refresh",
+    "url_logout": "/logout",
+    "url_register": "/register",
+  
+    "url_user_profile": "/users/<string:u_name>/profile",
+  
+    "url_myprofile": "/account/myprofile",
+    "url_profile_header": "/account/profile/header",
+    "url_myparagraph": "/account/paragraphs",
+    "url_fname": "/account/changefname",
+    "url_upload_pp": "/account/upload/pp",
+    "url_change_pass": "/account/changepassword",
+    "url_change_bio":"/account/changebio",
+    "url_change_dob":"/account/changedob",
+    "url_notifications":"/account/notifications",
+    "url_credit_change": "/account/credit"
+  
+  }
