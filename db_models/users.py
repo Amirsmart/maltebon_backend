@@ -229,7 +229,7 @@ def see_notification(id, engine):
     session.query(Notification_Model).filter(Notification_Model.id == id).update({Notification_Model.seen: True})
     session.flush()
     session.commit()
-    return changed_s.format("notification"), 200
+    return changed_s.format("notification_seen"), 200
 
 def get_notifications(user_id, engine):
     session = make_session(engine)

@@ -45,7 +45,7 @@
     "wrong_email_format": "Wrong email format entered.",
     "wrong_username_format": "Username must only contain characters and digits.",
   
-  
+    "notification_id_needed": "Notification id is required",
   
   
     "transaction_null_user": "Transaction Type Needs Second User",
