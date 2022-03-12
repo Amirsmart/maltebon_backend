@@ -1,12 +1,16 @@
 from re import search
 import resources
 from resources.account import *
+from resources.plugins import PluginCrud
 from resources.session import *
 from resources.payment import *
+from db_models.plugins import init_plugins
 from tools.string_tools import gettext
 
 
 def init_endpoints(api, engine, mail, mail_username,config):
+    init_plugins(engine)
+
     api.add_resource(login, gettext("url_login"), endpoint="login", resource_class_kwargs={'engine': engine})
     api.add_resource(refresh_login, gettext("url_refresh_login"), endpoint="refresh_login", resource_class_kwargs={'engine': engine})
     api.add_resource(register, gettext("url_register"), endpoint="register", resource_class_kwargs={'engine': engine, 'mail': mail, 'mail_username': mail_username})
@@ -22,4 +26,9 @@ def init_endpoints(api, engine, mail, mail_username,config):
 
 
     api.add_resource(credit, gettext("url_credit_change"), endpoint="credit", resource_class_kwargs={'engine': engine})
+
+    api.add_resource(PluginCrud, gettext("url_plugins"), endpoint="plugins", resource_class_kwargs={'engine': engine})
+
+
+
 

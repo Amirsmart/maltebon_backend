@@ -91,6 +91,7 @@ def add_user(name, email, password, engine):
                                   text='به ملتبون خوش امدید')
     session.add(jwk_user)
     session.commit()
+    return True
 
 
 def check_one_user(username, password, engine):

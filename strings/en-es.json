@@ -60,6 +60,12 @@
     "token_missing":"Token Is Missing",
     "token_expired":"Token Has Expired",
   
+    "plugin_params_needed":"Plugin First Parameter Is Needed",
+    "plugin_name_needed": "Plugin Name Is Needed",
+    "plugin_params_changed": "Plugin Parameters Changed Successfully",
+    "plugin_not_found": "Target Plugin Not Founded",
+
+
     "link_user": "/users/{}/profile",
   
   
@@ -73,13 +79,14 @@
   
     "url_myprofile": "/account/myprofile",
     "url_profile_header": "/account/profile/header",
-    "url_myparagraph": "/account/paragraphs",
     "url_fname": "/account/changefname",
     "url_upload_pp": "/account/upload/pp",
     "url_change_pass": "/account/changepassword",
     "url_change_bio":"/account/changebio",
     "url_change_dob":"/account/changedob",
     "url_notifications":"/account/notifications",
-    "url_credit_change": "/account/credit"
+    "url_credit_change": "/account/credit",
+
+    "url_plugins": "/plugins"
   
   }
