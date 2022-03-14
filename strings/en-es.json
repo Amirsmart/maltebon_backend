@@ -63,7 +63,10 @@
     "plugin_params_needed":"Plugin First Parameter Is Needed",
     "plugin_name_needed": "Plugin Name Is Needed",
     "plugin_params_changed": "Plugin Parameters Changed Successfully",
-    "plugin_not_found": "Target Plugin Not Founded",
+    "plugin_not_found": "Plugin Not Founded",
+    "plugin_token_not_found": "Plugin Token Not Founded",
+    "plugin_token_incorrcet": "Plugin Token incorrcet",
+
 
 
     "link_user": "/users/{}/profile",
@@ -87,6 +90,8 @@
     "url_notifications":"/account/notifications",
     "url_credit_change": "/account/credit",
 
-    "url_plugins": "/plugins"
+    "url_plugins": "/plugins",
+    "url_plugins_use": "/plugins/use/<string:p_name>"
+
   
   }
