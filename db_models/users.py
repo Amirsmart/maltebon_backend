@@ -81,8 +81,9 @@ def checkPassword(password1, password2) -> bool:
     return app_bcrypt.check_password_hash(password1, password2)
 
 
-def add_user(name, email, password, engine):
-    session = make_session(engine)
+def add_user(name, email, password, engine , session = None):
+    if session == None:
+        session = make_session(engine)
     jwk_user = UserModel(username=name, email=email, password=password)
     session.add(jwk_user)
     session.commit()
@@ -94,8 +95,9 @@ def add_user(name, email, password, engine):
     return True
 
 
-def check_one_user(username, password, engine):
-    session = make_session(engine)
+def check_one_user(username, password, engine , session = None):
+    if session == None:
+        session = make_session(engine)
     our_user = session.query(UserModel).filter((UserModel.name == username)).first()
     if our_user:
         password1 = our_user.password

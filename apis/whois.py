@@ -143,3 +143,26 @@ def whois_make_response(token , plugin: PluginModel  , typ , target):
             return [200,out]
         else:
             return [res.status_code , "Unkown Error {}".format(res.json())]
+    elif typ == 'subdomains':
+        link = 'https://subdomains.{}/api/v1?outputFormat=JSON&apiKey={}&domainName={}'.format(base_link , token , target)
+        res = None
+        try:
+            res = requests.get(link , timeout=20)
+        except requests.exceptions.Timeout:
+            return [405,"Request Timeout"]
+        if res.status_code == 403:
+            return [403,gettext('plugin_token_incorrcet')]
+        if res.status_code == 200:
+            try:
+                res = res.json()
+                res = res['result']
+                out = {
+                    'count': res['count'],
+                    'records':[row['domain'] for row in res['records']]
+                }
+            except json.decoder.JSONDecodeError:
+                return [500 , "Json Decode Error"]
+            
+            return [200,out]
+        else:
+            return [res.status_code , "Unkown Error {}".format(res.json())]
