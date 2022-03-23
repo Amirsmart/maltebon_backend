@@ -3,7 +3,6 @@ from functools import wraps
 from http import HTTPStatus as hs
 from flask.helpers import make_response
 from db_models.users import get_one_user
-from db_models.community import get_community, get_role
 import jwt
 import datetime
 from flask import request, jsonify

@@ -9,7 +9,6 @@ from tools.db_tool import make_session, Base
 from db_models.users import change_user_image, edit_bio, get_notifications, get_one_user, add_user, change_pass, \
     edit_fname, edit_dob, \
     UserModel, delete_expired_notifications
-from db_models.paragraph import paragraph_model, get_user_paragraphs
 from db_models.payment import payment_model
 from tools.string_tools import gettext
 from typing import Union, Dict, Tuple, List

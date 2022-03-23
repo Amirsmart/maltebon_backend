@@ -81,8 +81,9 @@ def checkPassword(password1, password2) -> bool:
     return app_bcrypt.check_password_hash(password1, password2)
 
 
-def add_user(name, email, password, engine):
-    session = make_session(engine)
+def add_user(name, email, password, engine , session = None):
+    if session == None:
+        session = make_session(engine)
     jwk_user = UserModel(username=name, email=email, password=password)
     session.add(jwk_user)
     session.commit()
@@ -91,10 +92,12 @@ def add_user(name, email, password, engine):
                                   text='به ملتبون خوش امدید')
     session.add(jwk_user)
     session.commit()
+    return True
 
 
-def check_one_user(username, password, engine):
-    session = make_session(engine)
+def check_one_user(username, password, engine , session = None):
+    if session == None:
+        session = make_session(engine)
     our_user = session.query(UserModel).filter((UserModel.name == username)).first()
     if our_user:
         password1 = our_user.password
@@ -229,7 +232,7 @@ def see_notification(id, engine):
     session.query(Notification_Model).filter(Notification_Model.id == id).update({Notification_Model.seen: True})
     session.flush()
     session.commit()
-    return changed_s.format("notification"), 200
+    return changed_s.format("notification_seen"), 200
 
 def get_notifications(user_id, engine):
     session = make_session(engine)
