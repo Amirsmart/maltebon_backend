@@ -60,7 +60,7 @@
     "token_missing":"Token Is Missing",
     "token_expired":"Token Has Expired",
   
-    "plugin_params_needed":"Plugin First Parameter Is Needed",
+    "plugin_params_needed":"Plugin Parameter Is Needed",
     "plugin_name_needed": "Plugin Name Is Needed",
     "plugin_params_changed": "Plugin Parameters Changed Successfully",
     "plugin_not_found": "Plugin Not Founded",
