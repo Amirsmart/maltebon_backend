@@ -19,7 +19,9 @@ def github_make_response( plugin: PluginModel , target):
         res = res.json()
         if "message" in res:
             if res["message"] == "Not Found":   # Just to be double sure
-                return [401 , ['']]
+                return [404 , ['']]
         return [200,link]
+    elif res.status_code == 404:
+        return [404 , '']
     else:
         return [res.status_code , "Unkown Error"]

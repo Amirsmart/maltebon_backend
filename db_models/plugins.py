@@ -40,7 +40,6 @@ class PluginModel(Base):
         return dic
 
 def init_plugins(engine):
-    session = make_session(engine)
     plugin_lists = [
     {
         'p_name':'whois',
@@ -58,7 +57,9 @@ def init_plugins(engine):
     }
     ]
     for row in plugin_lists:
+        print("^^^" , row)
         try:
+            session = make_session(engine)
             jwk_user = PluginModel(p_name=row['p_name'], params=row['params'], link=row['link'] ,description=row['description'] , image=row['image'] )
             session.add(jwk_user)
             session.commit()
@@ -79,7 +80,6 @@ def add_plugin(p_name, params, link,description,image, engine):
 
 def get_one_plugin(p_name, id, engine):
     session = make_session(engine)
-    print("\n\n;;;;;;;;;",p_name  , id)
     our_user = session.query(PluginModel).filter(db.or_(PluginModel.p_name == p_name, PluginModel.id == id)).first()
     return our_user
 

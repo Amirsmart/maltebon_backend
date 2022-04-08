@@ -1,3 +1,4 @@
+from apis.github import github_make_response
 from apis.whois import whois_make_response
 from db_models.plugins import PluginCrudModel, PluginModel
 from db_models.users import UserModel
