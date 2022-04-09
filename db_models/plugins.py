@@ -54,10 +54,16 @@ def init_plugins(engine):
         'link':'https://api.github.com/users/',
         'description':'',
         'image':'pluginp/github.png'
+    },
+    {
+        'p_name':'instagram',
+        'params':'',
+        'link':'https://instagram.com/',
+        'description':'',
+        'image':'pluginp/instagram.png'
     }
     ]
     for row in plugin_lists:
-        print("^^^" , row)
         try:
             session = make_session(engine)
             jwk_user = PluginModel(p_name=row['p_name'], params=row['params'], link=row['link'] ,description=row['description'] , image=row['image'] )
