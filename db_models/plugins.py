@@ -61,6 +61,13 @@ def init_plugins(engine):
         'link':'https://instagram.com/',
         'description':'',
         'image':'pluginp/instagram.png'
+    },
+    {
+        'p_name':'telegram',
+        'params':'',
+        'link':'https://telegram.org/',
+        'description':'',
+        'image':'pluginp/telegram.png'
     }
     ]
     for row in plugin_lists:

@@ -1,5 +1,6 @@
 from apis.github import github_make_response
 from apis.instagram import instagram_make_response
+from apis.telegram import telegram_make_response
 from apis.whois import whois_make_response
 from db_models.plugins import PluginCrudModel, PluginModel
 from db_models.users import UserModel
@@ -13,3 +14,5 @@ def parse_plugin_request(user: UserModel , plugin: PluginModel , crud: PluginCru
         return github_make_response(plugin , param1)
     elif name == 'instagram':
         return instagram_make_response(plugin , param1)
+    elif name == 'telegram':
+        return telegram_make_response(plugin , param1)
