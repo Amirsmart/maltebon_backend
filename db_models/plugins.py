@@ -65,7 +65,7 @@ def init_plugins(engine):
     {
         'p_name':'telegram',
         'params':'',
-        'link':'https://telegram.org/',
+        'link':'https://t.me/',
         'description':'',
         'image':'pluginp/telegram.png'
     }

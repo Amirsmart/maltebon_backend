@@ -1,4 +1,5 @@
 
+from pydoc import cli
 import requests
 from telethon import TelegramClient, sync
 from telethon import functions, types
@@ -8,23 +9,25 @@ import time
 import os
 from tools.string_tools import gettext
 from db_models.plugins import PluginModel
+import asyncio
 
-
+async def getter(loop, client, target):
+    await client.connect()
+    return await client(functions.account.CheckUsernameRequest(username=target))
 
 def telegram_make_response( plugin: PluginModel , target):
     id = "15592805"
     hash = "4626884d21fbc6db521cf2730a909ebb"
-
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     base_link = plugin.link
     link = '{}{}/'.format(base_link  , target)
     res = None
     try:
         id = int(id)
-        client = TelegramClient('Checker', id, hash)
-        client.start()
+        client = TelegramClient('Checker', id, hash, loop=loop)
         try:
-            res = client(functions.account.CheckUsernameRequest(username=target))
-            client.disconnect()
+            res = getter(loop, client, target)
             if res == True:
                 return [404 , '']        
             else:
