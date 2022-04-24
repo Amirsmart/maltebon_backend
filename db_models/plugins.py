@@ -23,7 +23,6 @@ class PluginModel(Base):
 
 
     def __init__(self, p_name, params, link ,description ,  image):
-
         self.p_name = p_name
         self.params = params
         self.link = link
@@ -41,7 +40,6 @@ class PluginModel(Base):
         return dic
 
 def init_plugins(engine):
-    session = make_session(engine)
     plugin_lists = [
     {
         'p_name':'whois',
@@ -49,10 +47,32 @@ def init_plugins(engine):
         'link':'whoisxmlapi.com',
         'description':'',
         'image':'pluginp/whois.png'
+    },   
+    {
+        'p_name':'github',
+        'params':'',
+        'link':'https://api.github.com/users/',
+        'description':'',
+        'image':'pluginp/github.png'
+    },
+    {
+        'p_name':'instagram',
+        'params':'',
+        'link':'https://instagram.com/',
+        'description':'',
+        'image':'pluginp/instagram.png'
+    },
+    {
+        'p_name':'telegram',
+        'params':'',
+        'link':'https://t.me/',
+        'description':'',
+        'image':'pluginp/telegram.png'
     }
     ]
     for row in plugin_lists:
         try:
+            session = make_session(engine)
             jwk_user = PluginModel(p_name=row['p_name'], params=row['params'], link=row['link'] ,description=row['description'] , image=row['image'] )
             session.add(jwk_user)
             session.commit()
@@ -73,7 +93,7 @@ def add_plugin(p_name, params, link,description,image, engine):
 
 def get_one_plugin(p_name, id, engine):
     session = make_session(engine)
-    our_user = session.query(PluginModel).filter((PluginModel.p_name == p_name) | (PluginModel.id == id)).first()
+    our_user = session.query(PluginModel).filter(db.or_(PluginModel.p_name == p_name, PluginModel.id == id)).first()
     return our_user
 
 
@@ -110,7 +130,7 @@ class PluginCrudModel(Base):
 
 def get_one_plugin_crud(plugin_id, user_id, engine):
     session = make_session(engine)
-    our_user = session.query(PluginCrudModel).filter(db.and_(PluginCrudModel.plugin_id == plugin_id) , (PluginCrudModel.user_id == user_id)).first()
+    our_user = session.query(PluginCrudModel).filter(db.and_(PluginCrudModel.plugin_id == plugin_id , PluginCrudModel.user_id == user_id)).first()
     return our_user
 
 def set_plugin_token(plugin: PluginModel,user: UserModel, engine , param1 , param2=db.null , param3=db.null):
