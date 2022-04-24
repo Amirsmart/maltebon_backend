@@ -1,4 +1,5 @@
 import sys
+
 sys.path.insert(1, '../')
 
 
@@ -12,6 +13,7 @@ from unittest.mock import patch
 from unittest.mock import Mock
 import tools.db_tool
 from alchemy_mock.mocking import AlchemyMagicMock
+from apis.parser import parse_plugin_request
 
 import sqlalchemy as db
 
@@ -81,6 +83,32 @@ class TestApp(unittest.TestCase):
     global emails 
     global passwords 
 
+
+    def test6_instagram(self):
+        user = get_by_username(names[0] ,engine)
+        self.assertIsNotNone(user)
+        
+        plugin = get_one_plugin("instagram" , -1 , engine)
+        self.assertIsNotNone(plugin)
+
+        crud = get_one_plugin_crud(plugin.id , user.id, engine)
+        self.assertIsNotNone(crud)
+        code , res = parse_plugin_request(user , plugin , crud , "instagram" , "param2" , "param3")
+        self.assertEqual(200 , code)
+
+    def test5_github(self):
+        user = get_by_username(names[0] ,engine)
+        self.assertIsNotNone(user)
+        
+        plugin = get_one_plugin("github" , -1 , engine)
+        self.assertIsNotNone(plugin)
+
+        crud = get_one_plugin_crud(plugin.id , user.id, engine)
+        self.assertIsNotNone(crud)
+        code , res = parse_plugin_request(user , plugin , crud , "github" , "param2" , "param3")
+        self.assertEqual(200 , code)
+
+
     def test4_set_plugin(self):
         plugin_lists = [
             {
@@ -120,19 +148,16 @@ class TestApp(unittest.TestCase):
         
     def test3_init_plugin(self):
         init_plugins(engine)
-        
+ 
     def test2_login(self):
-        for pointer in range(len(emails)):
-            name = names[pointer]
-            password = passwords[pointer]
-            self.assertIsNotNone(check_one_user(name , password , engine))
+        name = names[0]
+        password = passwords[0]
+        self.assertIsNotNone(check_one_user(name , password , engine))
     def test1_register(self ):
-        for pointer in range(len(emails)):
-            name = names[pointer]
-            email = emails[pointer]
-            password = passwords[pointer]
-            self.assertEqual(True, add_user(name, email, password, engine ))
-
+        name = names[0]
+        email = emails[0]
+        password = passwords[0]
+        self.assertEqual(True, add_user(name, email, password, engine ))
 
 if __name__ == "__main__":
     engine = db.create_engine('sqlite:///:memory:')

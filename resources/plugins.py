@@ -82,6 +82,7 @@ class PluginUse(Resource):
             return {"message": gettext("plugin_not_found")}, hs.NOT_FOUND
 
         crud = get_one_plugin_crud(plugin.id , current_user.id , self.engine)
+        print("----" , plugin.p_name , crud)
         if crud == None :
             return {"message": gettext("plugin_token_not_found")}, hs.NOT_FOUND
 
