@@ -1,13 +1,9 @@
 
 from pydoc import cli
 import requests
-from telethon import TelegramClient, sync
-from telethon import functions, types
+from telethon import TelegramClient
+from telethon import functions
 from telethon import errors
-import configparser
-import time
-import os
-from tools.string_tools import gettext
 from db_models.plugins import PluginModel
 import asyncio
 
@@ -33,7 +29,7 @@ def telegram_make_response( plugin: PluginModel , target):
             else:
                 return [200,link]
         except errors.FloodWaitError as fW:
-            return [403,gettext('plugin_token_incorrcet')]
+            return [403,"Plugin Token incorrcet"]
         except errors.UsernameInvalidError as uI:
             return [404 , ''] 
     except requests.exceptions.Timeout:
