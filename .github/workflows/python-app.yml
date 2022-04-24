@@ -38,3 +38,4 @@ jobs:
       run: |
         cd tests
         python test_sprint1.py
+        python test_sprint2.py

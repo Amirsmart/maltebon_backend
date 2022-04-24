@@ -1,7 +1,6 @@
 
 import requests
 
-from tools.string_tools import gettext
 from db_models.plugins import PluginModel
 
 
@@ -14,7 +13,7 @@ def github_make_response( plugin: PluginModel , target):
     except requests.exceptions.Timeout:
         return [405,"Request Timeout"]
     if res.status_code == 403:
-        return [403,gettext('plugin_token_incorrcet')]
+        return [403,"Plugin Token incorrcet"]
     if res.status_code == 200:
         res = res.json()
         if "message" in res:
