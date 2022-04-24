@@ -3,7 +3,6 @@ from db_models.plugins import PluginModel
 from db_models.users import UserModel
 import requests
 
-from tools.string_tools import gettext
 
 
 def whois_make_response(token , plugin: PluginModel  , typ , target):
@@ -16,7 +15,7 @@ def whois_make_response(token , plugin: PluginModel  , typ , target):
         except requests.exceptions.Timeout:
             return [405,"Request Timeout"]
         if res.status_code == 403:
-            return [403,gettext('plugin_token_incorrcet')]
+            return [403,'Plugin Token incorrcet']
         if res.status_code == 200:
             res = res.json()
             out ={
@@ -34,7 +33,7 @@ def whois_make_response(token , plugin: PluginModel  , typ , target):
         except requests.exceptions.Timeout:
             return [405,"Request Timeout"]
         if res.status_code == 403:
-            return [403,gettext('plugin_token_incorrcet')]
+            return [403,'Plugin Token incorrcet']
         if res.status_code == 200:
             try:
                 res = res.json()
@@ -55,7 +54,7 @@ def whois_make_response(token , plugin: PluginModel  , typ , target):
         except requests.exceptions.Timeout:
             return [405,"Request Timeout"]
         if res.status_code == 403:
-            return [403,gettext('plugin_token_incorrcet')]
+            return [403,'Plugin Token incorrcet']
         if res.status_code == 200:
             out = {}
             print(link)
@@ -88,7 +87,7 @@ def whois_make_response(token , plugin: PluginModel  , typ , target):
         except requests.exceptions.Timeout:
             return [405,"Request Timeout"]
         if res.status_code == 403:
-            return [403,gettext('plugin_token_incorrcet')]
+            return [403,'Plugin Token incorrcet']
         if res.status_code == 200:
             try:
                 res = res.json()
@@ -113,7 +112,7 @@ def whois_make_response(token , plugin: PluginModel  , typ , target):
         except requests.exceptions.Timeout:
             return [405,"Request Timeout"]
         if res.status_code == 403:
-            return [403,gettext('plugin_token_incorrcet')]
+            return [403,'Plugin Token incorrcet']
         if res.status_code == 200:
             try:
                 res = res.json()
@@ -132,7 +131,7 @@ def whois_make_response(token , plugin: PluginModel  , typ , target):
         except requests.exceptions.Timeout:
             return [405,"Request Timeout"]
         if res.status_code == 403:
-            return [403,gettext('plugin_token_incorrcet')]
+            return [403,'Plugin Token incorrcet']
         if res.status_code == 200:
             try:
                 res = res.json()
@@ -151,7 +150,7 @@ def whois_make_response(token , plugin: PluginModel  , typ , target):
         except requests.exceptions.Timeout:
             return [405,"Request Timeout"]
         if res.status_code == 403:
-            return [403,gettext('plugin_token_incorrcet')]
+            return [403,'Plugin Token incorrcet']
         if res.status_code == 200:
             try:
                 res = res.json()
