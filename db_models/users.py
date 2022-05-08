@@ -62,7 +62,7 @@ class UserModel(Base):
             dic["dob"] = str(self.dob.strftime('%Y-%m-%d'))
 
         # print("json", dic,"\n ", isinstance(str, dic.get("dob")))
-        print("json", dic, "\n ", isinstance(dic.get("dob"), str))
+        #print("json", dic, "\n ", isinstance(dic.get("dob"), str))
         return dic
 
     def check_credit(self, amount):

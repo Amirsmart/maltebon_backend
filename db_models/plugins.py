@@ -68,6 +68,13 @@ def init_plugins(engine):
         'link':'https://t.me/',
         'description':'',
         'image':'pluginp/telegram.png'
+    },
+    {
+    "p_name":"phone",
+    "params":'',
+    'link':'',
+    'description':'',
+    'image':''
     }
     ]
     for row in plugin_lists:

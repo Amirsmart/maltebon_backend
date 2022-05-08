@@ -34,4 +34,4 @@ Werkzeug==2.0.2
 flask-uploads
 alchemy_mock
 telethon
-
+phonenumbers
