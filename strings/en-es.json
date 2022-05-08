@@ -68,6 +68,10 @@
     "plugin_token_incorrcet": "Plugin Token incorrcet",
 
 
+    "sketch_data_needed":"Sketch data Is Needed",
+    "sketch_name_needed": "Sketch Name Is Needed",
+    "sketch_added": "Sketch Added Successfully",
+
 
     "link_user": "/users/{}/profile",
   
