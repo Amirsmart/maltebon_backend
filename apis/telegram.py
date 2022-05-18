@@ -1,5 +1,4 @@
 
-from pydoc import cli
 import requests
 from telethon import TelegramClient
 from telethon import functions
