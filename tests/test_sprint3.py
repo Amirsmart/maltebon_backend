@@ -84,17 +84,17 @@ class TestApp(unittest.TestCase):
     global emails 
     global passwords 
 
-    def test6_linkedin(self):
-        user = get_by_username(names[0] ,engine)
-        self.assertIsNotNone(user)
+#     def test6_linkedin(self):
+#         user = get_by_username(names[0] ,engine)
+#         self.assertIsNotNone(user)
 
-        plugin = get_one_plugin("linkedin", -1, engine)
-        self.assertIsNotNone(plugin)
+#         plugin = get_one_plugin("linkedin", -1, engine)
+#         self.assertIsNotNone(plugin)
 
-        crud = get_one_plugin_crud(plugin.id , user.id , engine)
-        self.assertIsNotNone(crud)
-        code , res = parse_plugin_request(user , plugin , crud , "linkedin" , "param2" , "param3")
-        self.assertEqual(200, code)
+#         crud = get_one_plugin_crud(plugin.id , user.id , engine)
+#         self.assertIsNotNone(crud)
+#         code , res = parse_plugin_request(user , plugin , crud , "linkedin" , "param2" , "param3")
+#         self.assertEqual(200, code)
 
     def test5_phone(self):
         user = get_by_username(names[0] ,engine)
