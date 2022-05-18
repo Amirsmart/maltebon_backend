@@ -1,8 +1,5 @@
-import code
 import sys
 
-from pyparsing import pythonStyleComment
-from telegram import User
 
 sys.path.insert(1, '../')
 
@@ -87,7 +84,19 @@ class TestApp(unittest.TestCase):
     global emails 
     global passwords 
 
-    def test7_phone(self):
+    def test6_linkedin(self):
+        user = get_by_username(names[0] ,engine)
+        self.assertIsNotNone(user)
+
+        plugin = get_one_plugin("linkedin", -1, engine)
+        self.assertIsNotNone(plugin)
+
+        crud = get_one_plugin_crud(plugin.id , user.id , engine)
+        self.assertIsNotNone(crud)
+        code , res = parse_plugin_request(user , plugin , crud , "linkedin" , "param2" , "param3")
+        self.assertEqual(200, code)
+
+    def test5_phone(self):
         user = get_by_username(names[0] ,engine)
         self.assertIsNotNone(user)
 
@@ -98,31 +107,6 @@ class TestApp(unittest.TestCase):
         self.assertIsNotNone(crud)
         code , res = parse_plugin_request(user , plugin , crud , "+15597124958" , "param2" , "param3")
         self.assertEqual(200, code)
-
-    def test6_instagram(self):
-        user = get_by_username(names[0] ,engine)
-        self.assertIsNotNone(user)
-        
-        plugin = get_one_plugin("instagram" , -1 , engine)
-        self.assertIsNotNone(plugin)
-
-        crud = get_one_plugin_crud(plugin.id , user.id, engine)
-        self.assertIsNotNone(crud)
-        code , res = parse_plugin_request(user , plugin , crud , "instagram" , "param2" , "param3")
-        self.assertEqual(200 , code)
-
-    def test5_github(self):
-        user = get_by_username(names[0] ,engine)
-        self.assertIsNotNone(user)
-        
-        plugin = get_one_plugin("github" , -1 , engine)
-        self.assertIsNotNone(plugin)
-
-        crud = get_one_plugin_crud(plugin.id , user.id, engine)
-        self.assertIsNotNone(crud)
-        code , res = parse_plugin_request(user , plugin , crud , "github" , "param2" , "param3")
-        self.assertEqual(200 , code)
-
 
     def test4_set_plugin(self):
         plugin_lists = [
@@ -156,6 +140,13 @@ class TestApp(unittest.TestCase):
             },
             {
                 "p_name":"phone",
+                "params":'',
+                'link':'',
+                'description':'',
+                'image':''
+            },
+            {
+                "p_name":"linkedin",
                 "params":'',
                 'link':'',
                 'description':'',

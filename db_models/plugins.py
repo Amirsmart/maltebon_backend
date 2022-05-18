@@ -70,11 +70,18 @@ def init_plugins(engine):
         'image':'pluginp/telegram.png'
     },
     {
-    "p_name":"phone",
-    "params":'',
-    'link':'',
-    'description':'',
-    'image':''
+        "p_name":"phone",
+        "params":'',
+        'link':'',
+        'description':'',
+        'image':''
+    },
+    {
+        "p_name":"linkedin",
+        "params":'',
+        'link':'https://www.linkedin.com/in/',
+        'description':'',
+        'image':''
     }
     ]
     for row in plugin_lists:

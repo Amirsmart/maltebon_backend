@@ -1,5 +1,6 @@
 from apis.github import github_make_response
 from apis.instagram import instagram_make_response
+from apis.linkedin import linkedin_make_response
 from apis.phone import phone_make_response
 from apis.telegram import telegram_make_response
 from apis.whois import whois_make_response
@@ -19,3 +20,5 @@ def parse_plugin_request(user: UserModel , plugin: PluginModel , crud: PluginCru
         return telegram_make_response(plugin , param1)
     elif name == 'phone':
         return phone_make_response(plugin , param1)
+    elif name == 'linkedin':
+        return linkedin_make_response(plugin  , param1)

@@ -1,5 +1,6 @@
 import sqlalchemy as db
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy_utils import database_exists, create_database
 
 Base = declarative_base()
 engine = None
@@ -18,6 +19,8 @@ def init_db(MYSQL_USER, MYSQL_PASSWORD, MYSQL_HOST, MYSQL_DB):
     global engine
     try:
         engine = make_connection(MYSQL_USER, MYSQL_PASSWORD, MYSQL_HOST, MYSQL_DB)
+        if not database_exists(engine.url):
+            create_database(engine.url)
         init_tables(engine)
         return engine
     except Exception as e:
