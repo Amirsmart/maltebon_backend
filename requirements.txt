@@ -35,3 +35,5 @@ flask-uploads
 alchemy_mock
 telethon
 phonenumbers
+sqlalchemy_utils
+linkedin_api
