@@ -1,5 +1,6 @@
 from lib2to3.pgen2 import token
 from matplotlib import image
+from requests import session
 import sqlalchemy as db
 from db_models.users import UserModel
 from tools.db_tool import make_session, Base
@@ -26,7 +27,7 @@ class SketchModel(Base):
         self.user_id = user_id
         self.data = data
         self.name = name
-        self.token = str(datetime.datetime.now() ) + name
+        self.token = str(datetime.datetime.now() ).replace(' ' , '').replace('-','').replace(':','').replace('.','') + name
 
     @property
     def json(self):
@@ -52,10 +53,13 @@ def add_sketch(user: UserModel, engine , data , name):
     jwk_user = SketchModel(user_id=user.id, data=data , name=name )
     session.add(jwk_user)
     session.commit()
+    return jwk_user.json
     
-def get_user_sketch(user_id, engine):
+def get_user_sketchs(user_id, engine):
     session = make_session(engine)
+    print("[DEBUG]1")
     our_user = session.query(SketchModel).filter(SketchModel.user_id == user_id ).all()
+    print("[DEBUG]2")
     return our_user
 
 def get_user_sketch_by_name(user_id,name ,engine):
