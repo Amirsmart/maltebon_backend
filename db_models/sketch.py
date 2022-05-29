@@ -66,3 +66,10 @@ def get_user_sketch_by_name(user_id,name ,engine):
     session = make_session(engine)
     our_user = session.query(SketchModel).filter(db.and_(SketchModel.user_id == user_id  , SketchModel.name == name)).first()
     return our_user
+
+def change_sketch_image(current_user: UserModel,sketch_id, url, engine):
+    session = make_session(engine)
+    session.query(SketchModel).filter(db.and_(SketchModel.user_id == current_user.id,SketchModel.id == sketch_id) ).update({SketchModel.image: url})
+    session.flush()
+    session.commit()
+    return changed_s.format("image"), 200

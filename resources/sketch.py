@@ -1,10 +1,12 @@
+import os
 from flask_restful import Resource
 from flask import request, make_response, jsonify
 
 
 from pymysql import NULL
-from db_models.sketch import add_sketch, get_user_sketch_by_name, get_user_sketchs 
+from db_models.sketch import add_sketch, change_sketch_image, get_user_sketch_by_name, get_user_sketchs 
 from db_models.users import UserModel
+from tools.image_tool import get_extension
 from tools.string_tools import gettext
 from http import HTTPStatus as hs
 
@@ -59,3 +61,38 @@ class Sketch(Resource):
             return {"message": gettext("sketch_not_found") }, 404
         res = res.json
         return make_response(jsonify(res, 200))
+
+class sketch_picture(Resource):
+    def __init__(self, **kwargs):
+        self.engine = kwargs['engine']
+
+    @authorize
+    def post(self, current_user):
+        """insert or change current user profile picture"""
+        req_data = request.json
+        id = NULL
+        try:
+            id = req_data["id"]
+        except:
+            return {"message": gettext("sketch_id_needed")}, hs.BAD_REQUEST
+        files = request.files
+        file = files.get('file')
+        if 'file' not in request.files:
+            return make_response(jsonify(message=gettext("upload_no_file")), 400)
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            return make_response(jsonify(message=gettext("upload_no_filename")), 400)
+        if file:
+            try:
+                os.makedirs(os.getcwd() + gettext('UPLOAD_FOLDER') + '/sp/', exist_ok=True)
+            except:
+                pass
+            url = gettext('UPLOAD_FOLDER') + 'pp/' + str(current_user.id) + get_extension(file.filename)
+            try:
+                os.remove(url)
+            except:
+                pass
+            file.save(os.getcwd() + url)
+            change_sketch_image(current_user,id , url, self.engine)
+            return make_response(jsonify(message=gettext("upload_success")), 200)

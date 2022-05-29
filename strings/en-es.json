@@ -70,6 +70,7 @@
 
     "sketch_data_needed":"Sketch data Is Needed",
     "sketch_name_needed": "Sketch Name Is Needed",
+    "sketch_id_needed": "Sketch ID Is Needed",
     "sketch_added": "Sketch Added Successfully",
     "sketch_already_exist": "Sketch Already Exist",
     "sketch_not_found": "Sketch Not Found",
