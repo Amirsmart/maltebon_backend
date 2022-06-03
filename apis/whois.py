@@ -165,3 +165,5 @@ def whois_make_response(token , plugin: PluginModel  , typ , target):
             return [200,out]
         else:
             return [res.status_code , "Unkown Error {}".format(res.json())]
+    else:
+        return [404,"Request Type not found !"]
