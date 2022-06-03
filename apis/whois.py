@@ -94,10 +94,34 @@ def whois_make_response(token , plugin: PluginModel  , typ , target):
             except json.decoder.JSONDecodeError:
                 return [500 , "Json Decode Error"]
             results = []
+            names = []
+            emails = []
+            telephones = []
+
             for row in res['records']:
-                results.append({'domainName':row['domainName'] , 'nameServers':row['nameServers'] , 'whoisServer':row['whoisServer'] ,
-                'registrarName':row['registrarName'] , 'registrantContact':row['registrantContact'] , 'administrativeContact':row['administrativeContact'],
-                'technicalContact':row['technicalContact'] , 'billingContact':row['billingContact'] , 'zoneContact':row['zoneContact']})
+                if row['registrantContact']['name'] != None and row['registrantContact']['name'] != '':
+                    names.append(row['registrantContact']['name'])
+                if row['administrativeContact']['name'] != None and row['registrantContact']['name'] != '':
+                    names.append(row['administrativeContact']['name'])
+
+                if row['registrantContact']['email'] != None and row['registrantContact']['email'] != '':
+                    emails.append(row['registrantContact']['email'])
+                if row['administrativeContact']['email'] != None and row['registrantContact']['email'] != '':
+                    emails.append(row['administrativeContact']['email'])
+
+                if row['registrantContact']['telephone'] != None and row['registrantContact']['telephone'] != '':
+                    telephones.append(row['registrantContact']['telephone'].replace(' ' , ''))
+                if row['administrativeContact']['telephone'] != None and row['registrantContact']['telephone'] != '':
+                    telephones.append(row['administrativeContact']['telephone'].replace(' ' , ''))
+                
+            telephones = list(set(telephones))
+            names = list(set(names))
+            emails = list(set(emails))
+
+            results= {
+                'telephones': telephones, 'names':names , 'emails':emails
+            }
+
             out ={
                 'size':res['recordsCount'] , 'result': results
             }
