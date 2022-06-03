@@ -7,7 +7,7 @@ def linkedin_make_response( plugin: PluginModel , target):
     base_link = plugin.link
     api = None
     try:
-        api = Linkedin('bibali4932@dakcans.com', '85859090')
+        api = Linkedin('gaxafa1258@krunsea.com', '85859090')
     except client.ChallengeException :
         return [405,"Api Challenge Excepted"]
     except Exception as e:
@@ -15,10 +15,11 @@ def linkedin_make_response( plugin: PluginModel , target):
         
     res = None
     try:
-        res = api.get_profile(target)
+        #res = api.get_profile(target)
+        res = api.search_people(target )
         if str(res) == '{}':
             return [404 , '']
-        return [200 , str(res)]
+        return [200 , res]
     except Exception as e:
         print(e)
         return [405,"Api Error"]
