@@ -51,7 +51,23 @@ class PluginCrud(Resource):
         set_plugin_token(plugin , current_user , self.engine , param1 , param2 , param3)
 
         return {"message": gettext("plugin_params_changed")}, hs.OK
-      
+    
+    @authorize
+    def put(self,current_user: UserModel):
+        req_data = request.json
+
+        try:
+            p_name = req_data["p_name"]
+        except:
+            return {"message": gettext("plugin_name_needed")}, hs.BAD_REQUEST
+        plugin = get_one_plugin(p_name , -1 , self.engine)
+        if plugin == None :
+            return {"message": gettext("plugin_not_found")}, hs.NOT_FOUND
+        crud = get_one_plugin_crud(plugin.id , current_user.id , self.engine)
+        if crud == None :
+            return {"message": gettext("plugin_token_not_found")}, hs.NOT_FOUND
+        return {"message": crud.json }, 200
+
 class PluginUse(Resource):
     def __init__(self, **kwargs):
         self.engine = kwargs['engine']

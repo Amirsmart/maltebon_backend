@@ -5,6 +5,7 @@ from resources.plugins import PluginCrud, PluginUse
 from resources.session import *
 from resources.payment import *
 from db_models.plugins import init_plugins
+from resources.sketch import Sketch
 from tools.string_tools import gettext
 
 
@@ -29,6 +30,8 @@ def init_endpoints(api, engine, mail, mail_username,config):
 
     api.add_resource(PluginCrud, gettext("url_plugins"), endpoint="plugins", resource_class_kwargs={'engine': engine})
     api.add_resource(PluginUse, gettext("url_plugins_use"), endpoint="plugins_use", resource_class_kwargs={'engine': engine})
+
+    api.add_resource(Sketch , gettext("url_sketchs") , endpoint="sketchs" , resource_class_kwargs={'engine':engine})
 
 
 

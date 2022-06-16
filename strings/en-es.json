@@ -68,6 +68,13 @@
     "plugin_token_incorrcet": "Plugin Token incorrcet",
 
 
+    "sketch_data_needed":"Sketch data Is Needed",
+    "sketch_name_needed": "Sketch Name Is Needed",
+    "sketch_id_needed": "Sketch ID Is Needed",
+    "sketch_added": "Sketch Added Successfully",
+    "sketch_already_exist": "Sketch Already Exist",
+    "sketch_not_found": "Sketch Not Found",
+
 
     "link_user": "/users/{}/profile",
   
@@ -91,7 +98,9 @@
     "url_credit_change": "/account/credit",
 
     "url_plugins": "/plugins",
-    "url_plugins_use": "/plugins/use/<string:p_name>"
+    "url_plugins_use": "/plugins/use/<string:p_name>",
+
+    "url_sketchs":"/sketchs"
 
   
   }
