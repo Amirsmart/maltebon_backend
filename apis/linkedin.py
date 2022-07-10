@@ -1,11 +1,28 @@
 
-
+import http.cookiejar as cookielib
+from urllib.parse import urlencode
 from db_models.plugins import PluginModel
 from linkedin_api import Linkedin , client
+import requests
+from bs4 import BeautifulSoup
+
+
+import os
+import urllib
+import re
+import string
+from bs4 import BeautifulSoup
+
+username = 'gaxafa1258@krunsea.com'
+password = '85859090'
+
+
 
 def linkedin_make_response( plugin: PluginModel , target):
     base_link = plugin.link
     api = None
+
+    
     try:
         api = Linkedin('gaxafa1258@krunsea.com', '85859090')
     except client.ChallengeException :
@@ -23,15 +40,15 @@ def linkedin_make_response( plugin: PluginModel , target):
     except Exception as e:
         print(e)
         return [405,"Api Error"]
-    # if res.status_code == 403:
-    #     return [403,"Plugin Token incorrcet"]
-    # if res.status_code == 200:
-    #     res = res.json()
-    #     if "message" in res:
-    #         if res["message"] == "Not Found":   # Just to be double sure
-    #             return [404 , ['']]
-    #     return [200,link]
-    # elif res.status_code == 404:
-    #     return [404 , '']
-    # else:
-    #     return [res.status_code , "Unkown Error"]
+    if res.status_code == 403:
+        return [403,"Plugin Token incorrcet"]
+    if res.status_code == 200:
+        res = res.json()
+        if "message" in res:
+            if res["message"] == "Not Found":   # Just to be double sure
+                return [404 , ['']]
+        return [200,link]
+    elif res.status_code == 404:
+        return [404 , '']
+    else:
+        return [res.status_code , "Unkown Error"]
