@@ -1,5 +1,4 @@
 from lib2to3.pgen2 import token
-from matplotlib import image
 from requests import session
 import sqlalchemy as db
 from db_models.users import UserModel
