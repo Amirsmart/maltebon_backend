@@ -37,3 +37,4 @@ telethon
 phonenumbers
 sqlalchemy_utils
 linkedin_api
+bs4
