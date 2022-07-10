@@ -4,7 +4,7 @@ from flask import request, make_response, jsonify
 
 
 from pymysql import NULL
-from db_models.sketch import add_sketch, change_sketch_image, get_user_sketch_by_name, get_user_sketchs 
+from db_models.sketch import add_sketch, change_sketch_image, get_user_sketch_by_name, get_user_sketch_by_token, get_user_sketchs 
 from db_models.users import UserModel
 from tools.image_tool import get_extension
 from tools.string_tools import gettext
@@ -57,6 +57,21 @@ class Sketch(Resource):
             return {"message": gettext("sketch_name_needed")}, hs.BAD_REQUEST
 
         res = get_user_sketch_by_name(current_user.id , name , self.engine)
+        if res is None:
+            return {"message": gettext("sketch_not_found") }, 404
+        res = res.json
+        return make_response(jsonify(res, 200))
+    
+    @authorize
+    def put(self, current_user: UserModel):
+        req_data = request.json
+        token = NULL
+        try:
+            token = req_data["token"]
+        except:
+            return {"message": gettext("sketch_token_needed")}, hs.BAD_REQUEST
+
+        res = get_user_sketch_by_token(current_user.id , token , self.engine)
         if res is None:
             return {"message": gettext("sketch_not_found") }, 404
         res = res.json
